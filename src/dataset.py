@@ -48,3 +48,13 @@ inv_sqrt_degrees[nonzero] = 1.0 / np.sqrt(degrees[nonzero])
 D_inv_sqrt = np.diag(inv_sqrt_degrees)
 # Normalize the adjacency matrix
 P = D_inv_sqrt @ A @ D_inv_sqrt
+# Embedding dimension
+embedding_dim = 3
+# Initialize a random number generator
+rng = np.random.default_rng(seed=42)
+# Create initial embeddings for all nodes
+E0 = rng.normal(
+    loc=0.0,
+    scale=0.1,
+    size=(num_users + num_items, embedding_dim)
+)
