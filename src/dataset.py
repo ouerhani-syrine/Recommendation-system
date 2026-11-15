@@ -35,6 +35,10 @@ num_users = len(users)
 num_items = len(items)
 # Create the adjacency matrix
 A = np.block([[np.zeros((num_users, num_users)), R],[R.T, np.zeros((num_items, num_items))]])
+# Calculate the degree of each node
+degrees = np.sum(A, axis=1)
+# Construct the degree matrix
+D = np.diag(degrees)
 
 
 
