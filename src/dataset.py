@@ -31,5 +31,10 @@ for user, item in interactions:
     user_index = user_to_id[user]
     item_index = item_to_id[item]
     R[user_index, item_index] = 1
+num_users = len(users)
+num_items = len(items)
+# Create the adjacency matrix
+A = np.block([[np.zeros((num_users, num_users)), R],[R.T, np.zeros((num_items, num_items))]])
+
 
 
