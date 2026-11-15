@@ -39,6 +39,12 @@ A = np.block([[np.zeros((num_users, num_users)), R],[R.T, np.zeros((num_items, n
 degrees = np.sum(A, axis=1)
 # Construct the degree matrix
 D = np.diag(degrees)
-
-
-
+# Calculate the inverse square root of each node degree
+inv_sqrt_degrees = np.zeros_like(degrees, dtype=float)
+# Avoid division by zero for nodes without connections
+nonzero = degrees > 0
+inv_sqrt_degrees[nonzero] = 1.0 / np.sqrt(degrees[nonzero])
+# Construct D^(-1/2)
+D_inv_sqrt = np.diag(inv_sqrt_degrees)
+# Normalize the adjacency matrix
+P = D_inv_sqrt @ A @ D_inv_sqrt
