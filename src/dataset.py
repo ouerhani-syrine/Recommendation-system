@@ -1,4 +1,4 @@
-
+import numpy as np
 # Users in our recommendation system
 users = ["User1", "User2", "User3", "Target"]
 
@@ -21,3 +21,15 @@ interactions = [
     ("Target", "A"),
     ("Target", "B")
 ]
+# Create a matrix filled with zeros
+R = np.zeros((len(users), len(items)), dtype=int)
+# Create dictionaries to identify each user's and item's position
+user_to_id = {user: i for i, user in enumerate(users)}
+item_to_id = {item: i for i, item in enumerate(items)}
+# Fill the matrix using our interactions
+for user, item in interactions:
+    user_index = user_to_id[user]
+    item_index = item_to_id[item]
+    R[user_index, item_index] = 1
+
+
